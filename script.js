@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('datetime').innerText = currentDate.toLocaleString('en-US', { timeZone: data.timezone });
         }
 
-        // Call updateTime immediately to set the initial time
+    
         updateTime();
 
-        // Set an interval to update the time every second
+        
         setInterval(updateTime, 1000);
     } catch (error) {
         console.error('Error fetching IP information:', error);

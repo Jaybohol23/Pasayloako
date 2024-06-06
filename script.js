@@ -22,22 +22,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('location').innerText = `${city}, ${state}, ${country}`;
         document.getElementById('timezone').innerText = timezone;
 
-        // Update and display the visitor's IP address in the list
-        const ipListElement = document.getElementById('ip-list');
-        const ipList = JSON.parse(localStorage.getItem('ipList')) || [];
-
-        if (!ipList.includes(ipAddress)) {
-            ipList.push(ipAddress);
-            localStorage.setItem('ipList', JSON.stringify(ipList));
-        }
-
-        ipListElement.innerHTML = '';
-        ipList.forEach(ip => {
-            const listItem = document.createElement('li');
-            listItem.textContent = ip;
-            ipListElement.appendChild(listItem);
-        });
-
         // Function to update the time every second
         function updateTime() {
             const currentDate = new Date();
@@ -46,6 +30,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         updateTime();
         setInterval(updateTime, 1000);
+
+        // Store IP address in local storage (or you can store it in a database)
+        let ipList = JSON.parse(localStorage.getItem('ipList')) || [];
+        if (!ipList.includes(ipAddress)) {
+            ipList.push(ipAddress);
+            localStorage.setItem('ipList', JSON.stringify(ipList));
+        }
+
+        // Display IP addresses in the IP list section
+        const ipListElement = document.getElementById('ip-list');
+        ipList.forEach(ip => {
+            const li = document.createElement('li');
+            li.innerText = ip;
+            ipListElement.appendChild(li);
+        });
     } catch (error) {
         console.error('Error fetching IP information:', error);
     }
@@ -57,9 +56,28 @@ function toggleMenu() {
 }
 
 function showSection(sectionId) {
-    document.querySelectorAll('.container').forEach(container => {
-        container.style.display = 'none';
-    });
+    const sections = document.querySelectorAll('.container');
+    sections.forEach(section => section.style.display = 'none');
     document.getElementById(sectionId).style.display = 'block';
     toggleMenu();
+}
+
+function promptPassword() {
+    const passwordPrompt = document.getElementById('password-prompt');
+    passwordPrompt.style.display = 'flex';
+}
+
+function closePasswordPrompt() {
+    const passwordPrompt = document.getElementById('password-prompt');
+    passwordPrompt.style.display = 'none';
+}
+
+function validatePassword() {
+    const password = document.getElementById('password').value;
+    if (password === 'chilladmin') {
+        showSection('ip-list-section');
+    } else {
+        alert('Invalid password. Please try again.');
+    }
+    closePasswordPrompt();
 }

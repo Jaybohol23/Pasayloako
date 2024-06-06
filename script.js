@@ -1,3 +1,5 @@
+const backendURL = 'https://infochill.vercel.app/api/ips';
+
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const ipgeolocationApiKey = 'd276b4997e164c5ca93e37a12a8ce736'; // Replace with your ipgeolocation.io API key
@@ -32,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         setInterval(updateTime, 1000);
 
         // Save IP address to the server
-        await fetch('http://localhost:5000/api/ips', {
+        await fetch(backendURL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -41,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         // Load IP addresses from the server
-        let ipList = await (await fetch('http://localhost:5000/api/ips')).json();
+        let ipList = await (await fetch(backendURL)).json();
         
         // Pagination variables
         let currentPage = 0;

@@ -50,3 +50,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error fetching IP information:', error);
     }
 });
+
+function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.style.display = sidebar.style.display === 'block' ? 'none' : 'block';
+}
+
+function showSection(sectionId) {
+    document.querySelectorAll('.container').forEach(container => {
+        container.style.display = 'none';
+    });
+    document.getElementById(sectionId).style.display = 'block';
+    toggleMenu();
+}

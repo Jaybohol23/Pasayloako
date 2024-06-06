@@ -96,6 +96,13 @@ h1#username {
     color: #f39c12;
 }
 
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #ccc;
+    font-size: 14px;
+}
+
 @keyframes glow {
     0% {
         box-shadow: 0 0 10px rgba(0, 0, 255, 0.5);

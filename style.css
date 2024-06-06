@@ -14,7 +14,13 @@ body {
     background-color: #222;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.profile-pic img {
+    width: 150px; /* Adjust the width as needed */
+    height: 150px; /* Adjust the height as needed */
+    border-radius: 50%; /* To make it circular */
 }
 
 .info {

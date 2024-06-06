@@ -1,16 +1,17 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('https://ipapi.co/json/');
+        const apiKey = 'd276b4997e164c5ca93e37a12a8ce736'; 
+        const response = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}`);
         const data = await response.json();
 
         document.getElementById('ip-address').innerText = data.ip;
-        document.getElementById('location').innerText = `${data.city}, ${data.region}, ${data.country_name}`;
-        document.getElementById('timezone').innerText = data.timezone;
+        document.getElementById('location').innerText = `${data.city}, ${data.state_prov}, ${data.country_name}`;
+        document.getElementById('timezone').innerText = data.time_zone.name;
 
-        // Function to update the time every second
+        //seconds running bruh
         function updateTime() {
             const currentDate = new Date();
-            document.getElementById('datetime').innerText = currentDate.toLocaleString('en-US', { timeZone: data.timezone });
+            document.getElementById('datetime').innerText = currentDate.toLocaleString('en-US', { timeZone: data.time_zone.name });
         }
 
         updateTime();

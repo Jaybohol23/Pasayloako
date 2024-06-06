@@ -14,7 +14,7 @@
     </div>
     <div class="sidebar" id="sidebar">
         <a href="#" onclick="showSection('home')">Home</a>
-        <a href="#" onclick="showSection('ip-list-section')">IP List</a>
+        <a href="#" onclick="promptPassword()">IP List</a>
         <a href="https://www.facebook.com/Churchill.Dev4100" target="_blank">Contact</a>
     </div>
     <div class="container" id="home">
@@ -34,6 +34,14 @@
     <div class="container" id="ip-list-section" style="display: none;">
         <h2>Visitor IP List</h2>
         <ul id="ip-list"></ul>
+    </div>
+    <div class="password-prompt" id="password-prompt">
+        <div class="password-prompt-content">
+            <label for="password">Enter Password:</label>
+            <input type="password" id="password">
+            <button onclick="validatePassword()">Submit</button>
+            <button onclick="closePasswordPrompt()">Cancel</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

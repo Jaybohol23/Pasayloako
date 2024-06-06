@@ -1,4 +1,4 @@
-const backendURL = 'https://your-vercel-app-url.vercel.app/api/ips';
+const backendURL = 'https://infochill.vercel.app/api/ips';
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -99,7 +99,7 @@ function closePasswordPrompt() {
 
 function validatePassword() {
     const password = document.getElementById('password').value;
-    if (password === 'chilladmin') {
+    if (password === 'chilladmin') { // replace 'chilladmin' with the actual password
         showSection('ip-list-section');
     } else {
         alert('Invalid password. Please try again.');

@@ -38,13 +38,31 @@ document.addEventListener('DOMContentLoaded', async () => {
             localStorage.setItem('ipList', JSON.stringify(ipList));
         }
 
-        // Display IP addresses in the IP list section
-        const ipListElement = document.getElementById('ip-list');
-        ipList.forEach(ip => {
-            const li = document.createElement('li');
-            li.innerText = ip;
-            ipListElement.appendChild(li);
-        });
+        // Load IP addresses in chunks
+        let currentPage = 0;
+        const itemsPerPage = 10;
+
+        function loadMoreIPs() {
+            const ipListElement = document.getElementById('ip-list');
+            const start = currentPage * itemsPerPage;
+            const end = start + itemsPerPage;
+            const ipsToShow = ipList.slice(start, end);
+
+            ipsToShow.forEach(ip => {
+                const li = document.createElement('li');
+                li.innerText = ip;
+                ipListElement.appendChild(li);
+            });
+
+            currentPage++;
+            if (end >= ipList.length) {
+                document.getElementById('load-more').style.display = 'none';
+            }
+        }
+
+        // Initial load
+        loadMoreIPs();
+
     } catch (error) {
         console.error('Error fetching IP information:', error);
     }

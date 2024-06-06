@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const ipgeolocationApiKey = 'd276b4997e164c5ca93e37a12a8ce736'; // Replace with your ipgeolocation.io API key
-        const ipinfoToken = '60117f9430a2b5'; // Replace with your ipinfo.io token
+        const ipgeolocationApiKey = 'd276b4997e164c5ca93e37a12a8ce736'; // token mo nigga
+        const ipinfoToken = '60117f9430a2b5'; 
 
         const [geoResponse, infoResponse] = await Promise.all([
             fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${ipgeolocationApiKey}`),
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const geoData = await geoResponse.json();
         const infoData = await infoResponse.json();
 
-        // Combine data from both APIs
+        
         const city = geoData.city || infoData.city;
         const state = geoData.state_prov || infoData.region;
         const country = geoData.country_name || infoData.country;
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('location').innerText = `${city}, ${state}, ${country}`;
         document.getElementById('timezone').innerText = timezone;
 
-        // Function to update the time every second
+        // niggatime
         function updateTime() {
             const currentDate = new Date();
             document.getElementById('datetime').innerText = currentDate.toLocaleString('en-US', { timeZone: timezone });

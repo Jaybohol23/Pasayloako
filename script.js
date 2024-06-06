@@ -53,3 +53,12 @@ function showSection(sectionId) {
     document.getElementById(sectionId).style.display = 'block';
     toggleMenu();
 }
+
+function toggleVisitorCount() {
+    const visitorCountDisplay = document.getElementById('visitor-count-display');
+    if (visitorCountDisplay.style.display === 'none' || visitorCountDisplay.style.display === '') {
+        visitorCountDisplay.style.display = 'block';
+    } else {
+        visitorCountDisplay.style.display = 'none';
+    }
+}

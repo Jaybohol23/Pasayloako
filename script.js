@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         const ipinfoToken = '60117f9430a2b5';
 
+        // Fetch IP information
         const infoResponse = await fetch(`https://ipinfo.io/json?token=${ipinfoToken}`);
         const infoData = await infoResponse.json();
 
@@ -22,6 +23,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         updateTime();
         setInterval(updateTime, 1000);
+
+        // Visitor count logic
+        const visitorCountKey = 'visitorCount';
+        let visitorCount = localStorage.getItem(visitorCountKey);
+
+        if (!visitorCount) {
+            visitorCount = 0;
+        }
+
+        visitorCount = parseInt(visitorCount) + 1;
+        localStorage.setItem(visitorCountKey, visitorCount);
+
+        document.getElementById('visitor-count').innerText = visitorCount;
 
     } catch (error) {
         console.error('Error fetching IP information:', error);

@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const ip = '136.158.63.54';
-        const response = await fetch(`https://jonellccapisprojectv2-a62001f39859.herokuapp.com/api/ip?ipnum=${ip}`);
+        const response = await fetch('https://ipapi.co/json/');
         const data = await response.json();
 
         document.getElementById('ip-address').innerText = data.ip;
-        document.getElementById('location').innerText = `${data.city}, ${data.region}, ${data.country}`;
+        document.getElementById('location').innerText = `${data.city}, ${data.region}, ${data.country_name}`;
         document.getElementById('timezone').innerText = data.timezone;
 
         // Function to update the time every second

@@ -31,14 +31,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateTime();
         setInterval(updateTime, 1000);
 
-        // Store IP address in local storage (or you can store it in a database)
-        let ipList = JSON.parse(localStorage.getItem('ipList')) || [];
-        if (!ipList.includes(ipAddress)) {
-            ipList.push(ipAddress);
-            localStorage.setItem('ipList', JSON.stringify(ipList));
-        }
+        // Save IP address to the server
+        await fetch('http://localhost:5000/api/ips', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ ipAddress })
+        });
 
-        // Load IP addresses in chunks
+        // Load IP addresses from the server
+        let ipList = await (await fetch('http://localhost:5000/api/ips')).json();
+        
+        // Pagination variables
         let currentPage = 0;
         const itemsPerPage = 10;
 
@@ -50,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             ipsToShow.forEach(ip => {
                 const li = document.createElement('li');
-                li.innerText = ip;
+                li.innerText = ip.ipAddress;
                 ipListElement.appendChild(li);
             });
 

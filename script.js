@@ -1,4 +1,4 @@
-const backendURL = 'https://infochill.vercel.app/api/ips';
+const backendURL = 'https://your-vercel-app-url.vercel.app/api/ips';
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {

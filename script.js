@@ -16,10 +16,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         const state = geoData.state_prov || infoData.region;
         const country = geoData.country_name || infoData.country;
         const timezone = geoData.time_zone.name || infoData.timezone;
+        const ipAddress = geoData.ip || infoData.ip;
 
-        document.getElementById('ip-address').innerText = geoData.ip || infoData.ip;
+        document.getElementById('ip-address').innerText = ipAddress;
         document.getElementById('location').innerText = `${city}, ${state}, ${country}`;
         document.getElementById('timezone').innerText = timezone;
+
+        // Update and display the visitor's IP address in the list
+        const ipListElement = document.getElementById('ip-list');
+        const ipList = JSON.parse(localStorage.getItem('ipList')) || [];
+
+        if (!ipList.includes(ipAddress)) {
+            ipList.push(ipAddress);
+            localStorage.setItem('ipList', JSON.stringify(ipList));
+        }
+
+        ipListElement.innerHTML = '';
+        ipList.forEach(ip => {
+            const listItem = document.createElement('li');
+            listItem.textContent = ip;
+            ipListElement.appendChild(listItem);
+        });
 
         // Function to update the time every second
         function updateTime() {

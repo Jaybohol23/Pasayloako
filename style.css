@@ -79,47 +79,19 @@ body {
     padding: 15px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: #eee; /* Text color */
 }
 
-h2 {
+.info h2 {
     margin-bottom: 15px;
-    color: #f39c12;
+    color: #f39c12; /* Header text color */
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-a {
-    color: #f39c12;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #555;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+.info p {
+    color: #ddd; /* Paragraph text color */
 }
 
-a:hover {
-    background-color: #f39c12;
-    color: #111;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes glow {
-    0% {
-        box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); /* Start with blue shadow */
-    }
-    100% {
-        box-shadow: 0 0 30px rgba(0, 0, 255, 0.9); /* End with larger blue shadow */
-    }
+h1#username {
+    color: #f39c12; /* Username text color */
 }

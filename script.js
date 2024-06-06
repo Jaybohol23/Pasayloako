@@ -1,5 +1,3 @@
-const backendURL = 'https://infochill.vercel.app/api/ips';
-
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const ipgeolocationApiKey = 'd276b4997e164c5ca93e37a12a8ce736'; // Replace with your ipgeolocation.io API key
@@ -33,43 +31,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateTime();
         setInterval(updateTime, 1000);
 
-        // Save IP address to the server
-        await fetch(backendURL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ ipAddress })
-        });
-
-        // Load IP addresses from the server
-        let ipList = await (await fetch(backendURL)).json();
-        
-        // Pagination variables
-        let currentPage = 0;
-        const itemsPerPage = 10;
-
-        function loadMoreIPs() {
-            const ipListElement = document.getElementById('ip-list');
-            const start = currentPage * itemsPerPage;
-            const end = start + itemsPerPage;
-            const ipsToShow = ipList.slice(start, end);
-
-            ipsToShow.forEach(ip => {
-                const li = document.createElement('li');
-                li.innerText = ip.ipAddress;
-                ipListElement.appendChild(li);
-            });
-
-            currentPage++;
-            if (end >= ipList.length) {
-                document.getElementById('load-more').style.display = 'none';
-            }
-        }
-
-        // Initial load
-        loadMoreIPs();
-
     } catch (error) {
         console.error('Error fetching IP information:', error);
     }
@@ -85,24 +46,4 @@ function showSection(sectionId) {
     sections.forEach(section => section.style.display = 'none');
     document.getElementById(sectionId).style.display = 'block';
     toggleMenu();
-}
-
-function promptPassword() {
-    const passwordPrompt = document.getElementById('password-prompt');
-    passwordPrompt.style.display = 'flex';
-}
-
-function closePasswordPrompt() {
-    const passwordPrompt = document.getElementById('password-prompt');
-    passwordPrompt.style.display = 'none';
-}
-
-function validatePassword() {
-    const password = document.getElementById('password').value;
-    if (password === 'chilladmin') { // replace 'chilladmin' with the actual password
-        showSection('ip-list-section');
-    } else {
-        alert('Invalid password. Please try again.');
-    }
-    closePasswordPrompt();
 }

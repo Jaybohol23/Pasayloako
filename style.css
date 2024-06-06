@@ -65,7 +65,7 @@ body {
     border: 3px solid #444;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease-in-out;
-    animation: glow 2s infinite alternate; /* Added animation */
+    animation: glow 2s infinite alternate, rotate 4s linear infinite; /* Added animation */
 }
 
 .profile-pic img:hover {
@@ -94,4 +94,33 @@ body {
 
 h1#username {
     color: #f39c12; /* Username text color */
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); /* Start with blue shadow */
+    }
+    100% {
+        box-shadow: 0 0 30px rgba(0, 0, 255, 0.9); /* End with larger blue shadow */
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg); 
+    }
+    100% {
+        transform: rotate(360deg); 
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

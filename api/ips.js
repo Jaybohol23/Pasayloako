@@ -1,19 +1,18 @@
 const mongoose = require('mongoose');
-const { NowRequest, NowResponse } = require('@vercel/node');
 
-// Connect to MongoDB (you can use a cloud-hosted MongoDB like MongoDB Atlas)
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/ipdb', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
-// Define the IP Schema
 const ipSchema = new mongoose.Schema({
     ipAddress: { type: String, unique: true }
 });
 const IP = mongoose.model('IP', ipSchema);
 
-module.exports = async (req = NowRequest, res = NowResponse) => {
+module.exports = async (req, res) => {
+    console.log(`Received ${req.method} request`);
+
     if (req.method === 'POST') {
         const { ipAddress } = req.body;
         try {
@@ -21,6 +20,7 @@ module.exports = async (req = NowRequest, res = NowResponse) => {
             await newIP.save();
             res.status(201).json(newIP);
         } catch (error) {
+            console.error(error);
             res.status(500).json({ error: error.message });
         }
     } else if (req.method === 'GET') {
@@ -28,6 +28,7 @@ module.exports = async (req = NowRequest, res = NowResponse) => {
             const ips = await IP.find();
             res.status(200).json(ips);
         } catch (error) {
+            console.error(error);
             res.status(500).json({ error: error.message });
         }
     } else {

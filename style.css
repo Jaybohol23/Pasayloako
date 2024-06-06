@@ -56,7 +56,9 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
     animation: fadeIn 2s ease-in-out;
-    padding-bottom: 50px; /* Adjust as needed */
+    padding-bottom: 110px; /* Adjusted to accommodate footer */
+    height: calc(100vh - 110px); /* Adjusted for fixed footer */
+    overflow-y: auto; /* Add scroll if content exceeds container height */
 }
 
 .profile-pic img {
@@ -76,6 +78,7 @@ body {
 
 .info {
     margin-top: 20px;
+    margin-bottom: 60px; /* Adjust as needed */
     background-color: #333;
     padding: 15px;
     border-radius: 5px;

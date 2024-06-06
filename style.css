@@ -59,16 +59,18 @@ body {
 }
 
 .profile-pic img {
-    width: 150px; /* Adjust the width as needed */
-    height: 150px; /* Adjust the height as needed */
-    border-radius: 50%; /* To make it circular */
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
     border: 3px solid #444;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease-in-out;
+    animation: glow 2s infinite alternate; /* Added animation */
 }
 
 .profile-pic img:hover {
     transform: scale(1.1);
+    animation: none; /* Remove animation on hover */
 }
 
 .info {
@@ -110,5 +112,14 @@ a:hover {
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); /* Start with blue shadow */
+    }
+    100% {
+        box-shadow: 0 0 30px rgba(0, 0, 255, 0.9); /* End with larger blue shadow */
     }
 }

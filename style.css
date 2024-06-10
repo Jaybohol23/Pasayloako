@@ -11,7 +11,7 @@ body {
 }
 
 .menu-icon {
-    position: absolute;
+    position: fixed;
     top: 20px;
     left: 20px;
     cursor: pointer;
@@ -55,7 +55,7 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-    animation: fadeIn 2s ease-in-out, uniqueAnimation 4s infinite alternate; /* Added unique animation */
+    animation: fadeIn 2s ease-in-out;
     padding-bottom: 110px; /* Adjusted to accommodate footer */
     height: calc(100vh - 110px); /* Adjusted for fixed footer */
     overflow-y: auto; /* Add scroll if content exceeds container height */
@@ -139,14 +139,5 @@ h1#username {
     100% {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes uniqueAnimation {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.1);
     }
 }

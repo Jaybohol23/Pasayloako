@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         // Fetch IP information
-        const infoResponse = await fetch('https://random-api-pcoe.onrender.com/api/ip/124.107.215.6');
+        const infoResponse = await fetch('https://ipinfo.io/json');
         const infoData = await infoResponse.json();
 
         const city = infoData.city;
-        const state = infoData.region;
+        const region = infoData.region;
         const country = infoData.country;
         const timezone = infoData.timezone;
         const ipAddress = infoData.ip;
 
         document.getElementById('ip-address').innerText = ipAddress;
-        document.getElementById('location').innerText = `${city}, ${state}, ${country}`;
+        document.getElementById('location').innerText = `${city}, ${region}, ${country}`;
         document.getElementById('timezone').innerText = timezone;
 
         function updateTime() {

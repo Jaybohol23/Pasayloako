@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const ipinfoToken = '60117f9430a2b5';
-
         // Fetch IP information
-        const infoResponse = await fetch(`https://ipinfo.io/json?token=${ipinfoToken}`);
+        const infoResponse = await fetch('https://random-api-pcoe.onrender.com/api/ip/124.107.215.6');
         const infoData = await infoResponse.json();
 
         const city = infoData.city;
@@ -24,19 +22,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateTime();
         setInterval(updateTime, 1000);
 
-        // Visitor count logic
-        const visitorCountKey = 'visitorCount';
-        let visitorCount = localStorage.getItem(visitorCountKey);
-
-        if (!visitorCount) {
-            visitorCount = 0;
-        }
-
-        visitorCount = parseInt(visitorCount) + 1;
-        localStorage.setItem(visitorCountKey, visitorCount);
-
-        document.getElementById('visitor-count').innerText = visitorCount;
-
     } catch (error) {
         console.error('Error fetching IP information:', error);
     }
@@ -52,13 +37,4 @@ function showSection(sectionId) {
     sections.forEach(section => section.style.display = 'none');
     document.getElementById(sectionId).style.display = 'block';
     toggleMenu();
-}
-
-function toggleVisitorCount() {
-    const visitorCountDisplay = document.getElementById('visitor-count-display');
-    if (visitorCountDisplay.style.display === 'none' || visitorCountDisplay.style.display === '') {
-        visitorCountDisplay.style.display = 'block';
-    } else {
-        visitorCountDisplay.style.display = 'none';
-    }
 }
